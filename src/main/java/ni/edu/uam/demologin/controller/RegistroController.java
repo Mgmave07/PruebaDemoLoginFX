@@ -55,7 +55,7 @@ public class RegistroController {
     private void seleccionarFoto(ActionEvent event)
     {
         File archivo = seleccionarArchivo();
-        if (archivo != null) {
+        if (archivo == null) {
             return;
         }
         try {

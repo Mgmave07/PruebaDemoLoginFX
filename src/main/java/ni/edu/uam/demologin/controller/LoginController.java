@@ -38,14 +38,25 @@ public class LoginController {
             );
         }
         else {
-            Usuario u = service.findByLogin(usuario,password)
-                    .orElse(null);
-            if (u != null) {
-                UtilController.mostrarMensaje(
-                        Alert.AlertType.INFORMATION,
-                        "Bienvenido",
-                        "Inicio de sesion correcto"
-                );
+            try {
+                Usuario u = service.findByLogin(usuario,password)
+                        .orElse(null);
+                if (u != null) {
+                    UtilController.mostrarMensaje(
+                            Alert.AlertType.INFORMATION,
+                            "Bienvenido",
+                            "Inicio de sesion correcto"
+                    );
+                }
+                else {
+                    UtilController.mostrarMensaje(
+                            Alert.AlertType.WARNING,
+                            "Login",
+                            "Usuario o contrasena incorrectos"
+                    );
+                }
+            } catch (Exception e) {
+                UtilController.mostrarException(e);
             }
         }
     }
