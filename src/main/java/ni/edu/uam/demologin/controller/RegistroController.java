@@ -3,6 +3,7 @@ package ni.edu.uam.demologin.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -16,6 +17,7 @@ import ni.edu.uam.demologin.Main;
 import ni.edu.uam.demologin.model.Usuario;
 import ni.edu.uam.demologin.service.ArchivoService;
 import ni.edu.uam.demologin.service.NavegationService;
+import ni.edu.uam.demologin.service.SesionService;
 import ni.edu.uam.demologin.service.UsuarioService;
 
 import javax.swing.*;
@@ -118,7 +120,7 @@ public class RegistroController {
     private void mostrarUsuario(Usuario usuario) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    Main.class.getResource("fxml/usuario-modal.fxml")
+                    Main.class.getResource("usuario-modal.fxml")
             );
             Parent root = loader.load();
             UsuarioModalController controller =
@@ -176,9 +178,14 @@ public class RegistroController {
     @FXML
     private void regresar(ActionEvent event) {
         try {
-            navegationService.cambiarVista(
-                    "login.fxml",txtUsuario
-            );
+            if (SesionService.haySesionActiva()) {
+                // Si hay sesión activa, cierra la ventana actual
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                stage.close();
+            } else {
+                // Si no hay sesión, navega a login.fxml
+                navegationService.cambiarVista("login.fxml", txtUsuario);
+            }
         }catch (Exception e){
            UtilController.mostrarException(e);
         }

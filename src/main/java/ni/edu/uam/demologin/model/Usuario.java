@@ -1,36 +1,29 @@
 package ni.edu.uam.demologin.model;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 import java.util.UUID;
 
-public class Usuario extends BaseEntity{
-    private String nombre;
-    private String apellido;
-    private String correo;
-    private String password;
-    private String usuario;
-    private String rutafoto;
+public class Usuario extends BaseEntity {
 
-    /*
-     Usuario usuario = new Usuario(
-                txtNombre.getText(),
-                txtApellido.getText(),
-                txtCorreo.getText(),
-                txtUsuario.getText(),
-                txtPassword.getText(),
-                rutaFoto
-        );
-     */
+    private final StringProperty nombre = new SimpleStringProperty();
+    private final StringProperty apellido = new SimpleStringProperty();
+    private final StringProperty correo = new SimpleStringProperty();
+    private final StringProperty password = new SimpleStringProperty();
+    private final StringProperty usuario = new SimpleStringProperty();
+    private final StringProperty rutafoto = new SimpleStringProperty();
 
     public Usuario(String nombre, String apellido
             , String email, String usuario
-            , String password,String rutafoto) {
+            , String password, String rutafoto) {
         super();
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.correo = email;
-        this.password = password;
-        this.usuario = usuario;
-        this.rutafoto = rutafoto;
+        setNombre(nombre);
+        setApellido(apellido);
+        setCorreo(email);
+        setUsuario(usuario);
+        setPassword(password);
+        setRutafoto(rutafoto);
     }
 
     public Usuario() {
@@ -38,50 +31,74 @@ public class Usuario extends BaseEntity{
     }
 
     public String getUsuario() {
-        return usuario;
+        return usuario.get();
     }
 
     public void setUsuario(String usuario) {
-        this.usuario = usuario;
+        this.usuario.set(usuario);
+    }
+
+    public StringProperty usuarioProperty() {
+        return usuario;
     }
 
     public String getNombre() {
-        return nombre;
+        return nombre.get();
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombre.set(nombre);
+    }
+
+    public StringProperty nombreProperty() {
+        return nombre;
     }
 
     public String getApellido() {
-        return apellido;
+        return apellido.get();
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellido.set(apellido);
+    }
+
+    public StringProperty apellidoProperty() {
+        return apellido;
     }
 
     public String getCorreo() {
-        return correo;
+        return correo.get();
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        this.correo.set(correo);
+    }
+
+    public StringProperty correoProperty() {
+        return correo;
     }
 
     public String getPassword() {
-        return password;
+        return password.get();
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password.set(password);
+    }
+
+    public StringProperty passwordProperty() {
+        return password;
     }
 
     public String getRutafoto() {
-        return rutafoto;
+        return rutafoto.get();
     }
 
     public void setRutafoto(String rutafoto) {
-        this.rutafoto = rutafoto;
+        this.rutafoto.set(rutafoto);
+    }
+
+    public StringProperty rutafotoProperty() {
+        return rutafoto;
     }
 }

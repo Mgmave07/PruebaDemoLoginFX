@@ -7,6 +7,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import ni.edu.uam.demologin.model.Usuario;
 import ni.edu.uam.demologin.service.NavegationService;
+import ni.edu.uam.demologin.service.SesionService;
 import ni.edu.uam.demologin.service.UsuarioService;
 
 public class LoginController {
@@ -36,17 +37,17 @@ public class LoginController {
                     "Validacion",
                     "Debe de ingresar usuario y contraseña"
             );
+            return;
         }
         else {
             try {
                 Usuario u = service.findByLogin(usuario,password)
                         .orElse(null);
                 if (u != null) {
-                    UtilController.mostrarMensaje(
-                            Alert.AlertType.INFORMATION,
-                            "Bienvenido",
-                            "Inicio de sesion correcto"
-                    );
+                    SesionService.iniciarSesion(u);
+                    navegationService.cambiarVista(
+
+                            "usuario-table.fxml", txtUsuario);
                 }
                 else {
                     UtilController.mostrarMensaje(
