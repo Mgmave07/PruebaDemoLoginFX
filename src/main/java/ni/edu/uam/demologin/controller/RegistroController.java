@@ -101,7 +101,12 @@ public class RegistroController {
                 txtPassword.getText(),
                 rutaFoto
         );
-       usuarioService.save(usuario);
+        try {
+            usuarioService.save(usuario);
+        } catch (Exception e) {
+            UtilController.mostrarException(e);
+            return;
+        }
         UtilController.mostrarMensaje(
                 Alert.AlertType.INFORMATION,
                 "Registro",

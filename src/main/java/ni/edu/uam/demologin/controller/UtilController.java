@@ -17,7 +17,11 @@ public class UtilController {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Exception");
         alert.setHeaderText(null);
-        alert.setContentText(e.getCause().getMessage());
+        Throwable causa = e.getCause() != null ? e.getCause() : e;
+        String mensaje = causa.getMessage() != null
+                ? causa.getMessage()
+                : causa.toString();
+        alert.setContentText(mensaje);
         alert.showAndWait();
     }
 }

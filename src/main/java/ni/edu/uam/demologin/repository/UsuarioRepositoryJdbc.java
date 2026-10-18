@@ -40,8 +40,8 @@ public class UsuarioRepositoryJdbc implements UsuarioRepository{
                         rs.getString("primer_nombre"),
                         rs.getString("primer_apellido"),
                         rs.getString("correo"),
-                        rs.getString("password"),
                         rs.getString("usuario"),
+                        rs.getString("password"),
                         rs.getString("ruta_foto")
                 );
                 usuarios.add(usuario);
@@ -74,8 +74,8 @@ public class UsuarioRepositoryJdbc implements UsuarioRepository{
                             rs.getString("primer_nombre"),
                             rs.getString("primer_apellido"),
                             rs.getString("correo"),
-                            rs.getString("password"),
                             rs.getString("usuario"),
+                            rs.getString("password"),
                             rs.getString("ruta_foto")
                     );
                     return Optional.of(usuario);
